@@ -1,14 +1,13 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Audio } from "expo-av";
 
-const Boton = ({ run, setRun, tiempo, setTiempo }) => {
+const Boton = ({ run, setRun, tiempo, setTiempo, tiempoInicial }) => {
   const toggleRun = () => {
     if (tiempo === 0) {
-      // Reiniciar tiempo si llegó a 0
-      setTiempo(25 * 60); // O cualquier otro valor por defecto
+      // Reinicia al tiempo inicial de la selección actual
+      setTiempo(tiempoInicial);
       setRun(false); // Queda pausado después de reiniciar
     } else {
-      // Alternar entre correr y pausar
       setRun(!run);
     }
     playSound();
@@ -30,7 +29,6 @@ const Boton = ({ run, setRun, tiempo, setTiempo }) => {
     }
   };
 
-  // Texto del botón dependiendo del estado
   const getTextoBoton = () => {
     if (tiempo === 0) return "Reiniciar";
     return run ? "Detener" : "Iniciar";

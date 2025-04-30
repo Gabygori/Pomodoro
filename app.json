@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "09a5a7e1-42b5-4936-a6eb-b72d6b449bc3"
+      }
+    },
+    "owner": "gabote08"
   }
 }

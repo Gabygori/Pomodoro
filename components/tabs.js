@@ -1,24 +1,24 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-//creo un arreglo de opciones
+// Creo un arreglo de opciones
 const opciones = ["Pomodoro", "Descanso Corto", "Descanso Largo"];
 
 const Tabs = ({ seleccion, setSeleccion }) => {
-  const handlerSeleccion = (index) => {
-    setSeleccion(index);
+  const handlerSeleccion = (opcion) => {
+    setSeleccion(opcion);  // Cambiar el estado con el nombre de la opción seleccionada
   };
+
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
       {opciones.map((opcion, index) => (
         <Pressable
-          //TAREA 3: ESTILO DEL BORDE CONDICIONAL, SI LA SELECCION DEL TAP (INDICE) NO COINCIDE CON LA SELECCION (ESTADO) NO DEBO DIBUJAR EL BORDE
+          key={index}
+          onPress={() => handlerSeleccion(opcion)}
           style={({ pressed }) => [
             styles.boton,
             { opacity: pressed ? 0.5 : 1 },
-            {},
+            seleccion === opcion && styles.botonSeleccionado,  // Aplica el estilo si la opción está seleccionada
           ]}
-          key={index}
-          onPress={() => handlerSeleccion(index)}
         >
           <Text>{opcion}</Text>
         </Pressable>
@@ -31,11 +31,16 @@ const styles = StyleSheet.create({
   boton: {
     borderWidth: 2,
     width: "33%",
-    padding: 8,
+    padding: 10,
     borderRadius: 10,
+    backgroundColor: "white",
+    textAlign: "center",
     borderColor: "white",
     alignItems: "center",
-    marginTop: 15,
+    marginTop: 20,
+  },
+  botonSeleccionado: {
+    borderColor: "black",  // Color del borde cuando la opción está seleccionada
   },
 });
 
